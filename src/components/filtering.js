@@ -26,6 +26,13 @@ export function initFiltering(elements, indexes) {
             state[action.dataset.field] = '';
         }
 
+        if (state.totalForm || state.totalTo) {
+            state.total = [
+                state.totalForm ? parseFloat(state.totalForm) : undefined,
+                state.totalTo ? parseFloat(state.totalTo) : undefined
+            ];
+        }
+
         // @todo: #4.5 — отфильтровать данные используя компаратор
         return data.filter(row => compare(row, state));
     }
