@@ -12,7 +12,7 @@ export function initTable(settings, onAction) {
   const root = cloneTemplate(tableTemplate);
 
   // @todo: #1.2 —  вывести дополнительные шаблоны до и после таблицы
-  before.forEach((subName) => {
+  before.reverse().forEach((subName) => {
     // перебираем нужный массив идентификаторов
     root[subName] = cloneTemplate(subName); // клонируем и получаем объект, сохраняем в таблице
     root.container.prepend(root[subName].container); // добавляем к таблице после (append) или до (prepend)
@@ -33,7 +33,7 @@ export function initTable(settings, onAction) {
     setTimeout(onAction);
   });
 
-  root.container.addEventListener("submit", () => {
+  root.container.addEventListener("submit", (e) => {
     e.preventDefault();
     onAction(e.submitter);
   });
