@@ -26,9 +26,9 @@ export function initFiltering(elements, indexes) {
             state[action.dataset.field] = '';
         }
 
-        if (state.totalForm || state.totalTo) {
+        if (state.totalFrom || state.totalTo) {
             state.total = [
-                state.totalForm ? parseFloat(state.totalForm) : undefined,
+                state.totalFrom ? parseFloat(state.totalFrom) : undefined,
                 state.totalTo ? parseFloat(state.totalTo) : undefined
             ];
         }
