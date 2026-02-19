@@ -50,9 +50,11 @@ async function render(action) {
   // result = applySorting(result, state, action);
   // // шаг 2 пункт 3
   // result = applyPagination(result, state, action);
+  query = applyPagination(query, state, action); // обновляем query, шаг 2
 
   const { total, items } = await api.getRecords(query);
 
+  updatePagination(total, query); // перерисовываем пагинатор
   sampleTable.render(items);
 }
 
@@ -67,19 +69,19 @@ const sampleTable = initTable(
 );
 
 // @todo: инициализация
-// шаг 2 пункт 2
-// const applyPagination = initPagination(
-//   sampleTable.pagination.elements, // передаём сюда элементы пагинации, найденные в шаблоне
-//   (el, page, isCurrent) => {
-//     // и колбэк, чтобы заполнять кнопки страниц данными
-//     const input = el.querySelector("input");
-//     const label = el.querySelector("span");
-//     input.value = page;
-//     input.checked = isCurrent;
-//     label.textContent = page;
-//     return el;
-//   },
-// );
+// шаг 2 пункт 2 + шаг 2 в спринт 2
+const {applyPagination, updatePagination} = initPagination(
+  sampleTable.pagination.elements, // передаём сюда элементы пагинации, найденные в шаблоне
+  (el, page, isCurrent) => {
+    // и колбэк, чтобы заполнять кнопки страниц данными
+    const input = el.querySelector("input");
+    const label = el.querySelector("span");
+    input.value = page;
+    input.checked = isCurrent;
+    label.textContent = page;
+    return el;
+  },
+);
 
 // // шаг 3 пункт 1
 // const applySorting = initSorting([
