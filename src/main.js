@@ -46,6 +46,7 @@ async function render(action) {
   // result = applySearching(result, state, action);
     // шаг 4 пункт 1
   // result = applyFiltering(result, state, action);
+  query = applyFiltering(query, state, action); // result заменяем на query
   //   // шаг 3 пункт 2
   // result = applySorting(result, state, action);
   // // шаг 2 пункт 3
@@ -91,8 +92,8 @@ const {applyPagination, updatePagination} = initPagination(
 // ]);
 
 // // шаг 4 пункт 1
-// const applyFiltering = initFiltering(sampleTable.filter.elements, {    // передаём элементы фильтра
-//     searchBySeller: indexes.sellers                                    // для элемента с именем searchBySeller устанавливаем массив продавцов
+const {applyFiltering, updateIndexes} = initFiltering(sampleTable.filter.elements);      // передаём элементы фильтра
+    // {searchBySeller: indexes.sellers                                    // для элемента с именем searchBySeller устанавливаем массив продавцов
 // });
 
 // // шаг 5
@@ -103,6 +104,10 @@ appRoot.appendChild(sampleTable.container);
 
 async function init() {
   const indexes = await api.getIndexes(); //внутри init() получаем индексы
+
+  updateIndexes(sampleTable.filter.elements, {   // Добавляем обновление индексов внутри init():
+      searchBySeller: indexes.sellers
+  });
 }
 
 init().then(render);
