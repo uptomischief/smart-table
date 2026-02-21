@@ -44,6 +44,7 @@ async function render(action) {
   // @todo: использование
     // шаг 5 
   // result = applySearching(result, state, action);
+  query = applySearching(query, state, action); // result заменяем на query
     // шаг 4 пункт 1
   // result = applyFiltering(result, state, action);
   query = applyFiltering(query, state, action); // result заменяем на query
@@ -97,7 +98,7 @@ const {applyFiltering, updateIndexes} = initFiltering(sampleTable.filter.element
 // });
 
 // // шаг 5
-// const applySearching = initSearching('search');
+const applySearching = initSearching('search');
 
 const appRoot = document.querySelector("#app");
 appRoot.appendChild(sampleTable.container);
