@@ -1,7 +1,7 @@
 import "./fonts/ys-display/fonts.css";
 import "./style.css";
 
-import { data as sourceData } from "./data/dataset_1.js";
+// import { data as sourceData } from "./data/dataset_1.js";
 
 import { initData } from "./data.js";
 import { processFormData } from "./lib/utils.js";
@@ -50,6 +50,7 @@ async function render(action) {
   query = applyFiltering(query, state, action); // result заменяем на query
   //   // шаг 3 пункт 2
   // result = applySorting(result, state, action);
+  query = applySorting(query, state, action); // result заменяем на query
   // // шаг 2 пункт 3
   // result = applyPagination(result, state, action);
   query = applyPagination(query, state, action); // обновляем query, шаг 2
@@ -85,12 +86,12 @@ const {applyPagination, updatePagination} = initPagination(
   },
 );
 
-// // шаг 3 пункт 1
-// const applySorting = initSorting([
-//   // Нам нужно передать сюда массив элементов, которые вызывают сортировку, чтобы изменять их визуальное представление
-//   sampleTable.header.elements.sortByDate,
-//   sampleTable.header.elements.sortByTotal,
-// ]);
+// шаг 3 пункт 1
+const applySorting = initSorting([
+  // Нам нужно передать сюда массив элементов, которые вызывают сортировку, чтобы изменять их визуальное представление
+  sampleTable.header.elements.sortByDate,
+  sampleTable.header.elements.sortByTotal,
+]);
 
 // // шаг 4 пункт 1
 const {applyFiltering, updateIndexes} = initFiltering(sampleTable.filter.elements);      // передаём элементы фильтра
