@@ -61,9 +61,6 @@ const updatePagination = (total, { page, limit }) => {
     // const skip = (page - 1) * rowsPerPage; // сколько строк нужно пропустить
     // return data.slice(skip, skip + rowsPerPage); // получаем нужную часть строк (заменяем имеющийся return)
   };
-      pages.replaceChildren(
-      createPage(pageTemplate.cloneNode(true), 1, true)
-    )
 
 return {
     updatePagination,
