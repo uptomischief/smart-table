@@ -22,13 +22,13 @@ const applyPagination = (query, state, action) => {
           page = Math.max(1, page - 1);
           break; // переход на предыдущую страницу
         case "next":
-          page = pageCount ? Math.min(pageCount, page + 1) : page + 1;
+          page = Math.min(pageCount, page + 1);
           break; // переход на следующую страницу
         case "first":
           page = 1;
           break; // переход на первую страницу
         case "last":
-          page = pageCount || 1;
+          page = pageCount;
           break; // переход на последнюю страницу 
       }
 
@@ -61,6 +61,9 @@ const updatePagination = (total, { page, limit }) => {
     // const skip = (page - 1) * rowsPerPage; // сколько строк нужно пропустить
     // return data.slice(skip, skip + rowsPerPage); // получаем нужную часть строк (заменяем имеющийся return)
   };
+      pages.replaceChildren(
+      createPage(pageTemplate.cloneNode(true), 1, true)
+    )
 
 return {
     updatePagination,
