@@ -22,13 +22,13 @@ const applyPagination = (query, state, action) => {
           page = Math.max(1, page - 1);
           break; // переход на предыдущую страницу
         case "next":
-          page = Math.min(pageCount, page + 1);
+          page = pageCount ? Math.min(pageCount, page + 1) : page + 1;
           break; // переход на следующую страницу
         case "first":
           page = 1;
           break; // переход на первую страницу
         case "last":
-          page = pageCount;
+          page = pageCount || 1;
           break; // переход на последнюю страницу 
       }
 
