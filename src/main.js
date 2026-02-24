@@ -44,17 +44,15 @@ async function render(action) {
   // @todo: использование
     // шаг 5 
   // result = applySearching(result, state, action);
-  // query = applySearching(query, state, action); // result заменяем на query
+  query = applySearching(query, state, action); // result заменяем на query
     // шаг 4 пункт 1
   // result = applyFiltering(result, state, action);
-  // query = applyFiltering(query, state, action); // result заменяем на query
+  query = applyFiltering(query, state, action); // result заменяем на query
   //   // шаг 3 пункт 2
   // result = applySorting(result, state, action);
   query = applySorting(query, state, action); // result заменяем на query
   // // шаг 2 пункт 3
   // result = applyPagination(result, state, action);
-    query = applySearching(query, state, action); // result заменяем на query
-    query = applyFiltering(query, state, action); // result заменяем на query
   query = applyPagination(query, state, action); // обновляем query, шаг 2
 
   const { total, items } = await api.getRecords(query);
