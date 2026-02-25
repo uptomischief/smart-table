@@ -56,10 +56,6 @@ const updatePagination = (total, { page, limit }) => {
     fromRow.textContent = (page - 1) * limit + 1; // С какой строки выводим
     toRow.textContent = Math.min(page * limit, total); // До какой строки выводим, если это последняя страница, то отображаем оставшееся количество
     totalRows.textContent = total; // Сколько всего строк выводим на всех страницах вместе (после фильтрации будет меньше)
-
-    // // @todo: #2.2 — посчитать сколько строк нужно пропустить и получить срез данных
-    // const skip = (page - 1) * rowsPerPage; // сколько строк нужно пропустить
-    // return data.slice(skip, skip + rowsPerPage); // получаем нужную часть строк (заменяем имеющийся return)
   };
 
 return {
