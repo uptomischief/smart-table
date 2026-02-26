@@ -70,11 +70,10 @@ const {applyPagination, updatePagination} = initPagination(
     // и колбэк, чтобы заполнять кнопки страниц данными
     const input = el.querySelector("input");
     const label = el.querySelector("span");
-    if (input && label) {
+    
     input.value = page;
     input.checked = isCurrent;
     label.textContent = page;
-    }
     return el;
   },
 );
